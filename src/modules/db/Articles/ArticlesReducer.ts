@@ -15,7 +15,37 @@ export interface Article {
 }
 
 const initialState = () => ({
-    data: []
+    data: [{
+        id: uuidv4(),
+        title: "sample article1",
+        body: "sample article body1",
+        created: new Date(),
+        edited: new Date(),
+    }, {
+        id: uuidv4(),
+        title: "sample article2",
+        body: "sample article body2",
+        created: new Date(),
+        edited: new Date(),
+    }, {
+        id: uuidv4(),
+        title: "sample article3",
+        body: "sample article body3",
+        created: new Date(),
+        edited: new Date(),
+    }, {
+        id: uuidv4(),
+        title: "sample article4",
+        body: "sample article body4",
+        created: new Date(),
+        edited: new Date(),
+    }, {
+        id: uuidv4(),
+        title: "sample article5",
+        body: "sample article body5",
+        created: new Date(),
+        edited: new Date(),
+    },]
 });
 
 const articles: Reducer<ArticlesState, ArticlesActions> = (state = initialState(), action) => {
