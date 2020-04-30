@@ -4,8 +4,9 @@ import React from "react";
 import { Redirect, Route as PublicRoute, Switch } from "react-router-dom";
 import { history } from "src/core/ConfigureStore";
 import ROUTES from "src/utils/Routes";
-import Top from "./Top/Top";
+import Article from "./Article/Article";
 import Create from "./Create/Create";
+import Top from "./Top/Top";
 
 const useStyles = makeStyles(
     createStyles({
@@ -23,6 +24,9 @@ const App: React.FC = () => {
                 </PublicRoute>
                 <PublicRoute exact path={ROUTES.CREATE}>
                     <Create />
+                </PublicRoute>
+                <PublicRoute exact path={ROUTES.ARTICLE}>
+                    <Article />
                 </PublicRoute>
                 <Redirect exact from="*" to={ROUTES.TOP} />
             </Switch>

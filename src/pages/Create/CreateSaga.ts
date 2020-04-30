@@ -18,5 +18,6 @@ const submitSaga = function* () {
     // 見た目だけ遅延させる
     yield delay(1000);
     yield put(createActionCreators.submitEnd());
+    yield put(createActionCreators.changeValues({ title: "", body: "" }));
     yield put(navigateActionsCreatetors.push(ROUTES.TOP));
 };

@@ -42,7 +42,7 @@ const initialState = () => ({
     }, {
         id: uuidv4(),
         title: "sample article5",
-        body: "sample article body5",
+        body: "sample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\nsample article body5\n",
         created: new Date(),
         edited: new Date(),
     },]
