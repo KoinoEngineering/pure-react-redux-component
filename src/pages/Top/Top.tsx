@@ -1,9 +1,12 @@
 import React from "react";
 import { Container, Grid, Typography, Button, makeStyles, createStyles } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
 import ROUTES from "src/utils/Routes";
+import { ArticlesState } from "src/modules/db/Articles/ArticlesReducer";
+import { State } from "src/interfaces/State";
+import ArticleCard from "src/components/atoms/ArticleCard/ArticleCard";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -12,6 +15,7 @@ const useRowStyle = makeStyles(createStyles({
 }));
 
 const Top: React.FC = () => {
+    const { data: articles } = useSelector<State, ArticlesState>(s => s.articles);
     const rowClasses = useRowStyle();
     const dispatch = useDispatch();
     const actions = {
@@ -30,10 +34,13 @@ const Top: React.FC = () => {
                     <Button variant="contained" onClick={() => actions.navigate.push(ROUTES.CREATE)}>新規作成</Button>
                 </Grid>
             </Grid>
-            <Grid id="Articles" container classes={rowClasses}>
-                <Grid item>
-                    記事の一覧を表示
-                </Grid>
+            <Grid id="Articles" container classes={rowClasses} spacing={4}>
+                {
+                    articles.map(a =>
+                        <Grid key={a.id} item xs={12} sm={4} md={3}>
+                            <ArticleCard data={a} />
+                        </Grid>)
+                }
             </Grid>
         </Grid>
     </Container>;
