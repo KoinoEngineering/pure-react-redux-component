@@ -1,10 +1,8 @@
 import { Reducer } from "redux";
 import { CreateActions, ActionType } from "./CreateAction";
+import { Article } from "src/modules/db/Articles/ArticlesReducer";
 
-export interface CreateState {
-    title: string;
-    body: string;
-}
+export interface CreateState extends Pick<Article, "title" | "body"> { }
 
 const initialState = (): CreateState => ({
     title: "",
