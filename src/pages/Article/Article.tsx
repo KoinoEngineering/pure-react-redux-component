@@ -31,15 +31,15 @@ const Article: React.FC<ArticleProps> = (props) => {
     const { data } = useSelector<State, ArticlesState>(state => state.articles);
     const rowClases = useRowStyle();
     const bodyCasses = useBodyStyle();
-    const article = data.find(d => d.id === props.match?.params.id);
     const dispatch = useDispatch();
     const actions = {
         navigate: bindActionCreators(navigateActionsCreatetors, dispatch)
     };
-    if (!article) {
+    if (isNaN(Number(props.match.params.id))) {
         alert("id が　正しくありません TOPへ戻ります");
         actions.navigate.push(ROUTES.TOP);
     }
+    const article = data[Number(props.match.params.id)];
 
     return <Container>
         <Grid container>

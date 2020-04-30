@@ -17,7 +17,7 @@ interface ArticleCardProps extends CardProps {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ data, ...cardProps }) => {
     const cardContentClasses = useCardContentStyle();
-    return <NavLink to={generatePath(ROUTES.ARTICLE, { id: data.id })}>
+    return <NavLink to={generatePath(ROUTES.ARTICLE, { id: cardProps.id })}>
         <Card raised {...cardProps}>
             <CardHeader title={data.title} />
             <CardContent classes={cardContentClasses}>

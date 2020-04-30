@@ -36,9 +36,9 @@ const Top: React.FC = () => {
             </Grid>
             <Grid id="Articles" container classes={rowClasses} spacing={4}>
                 {
-                    articles.map(a =>
-                        <Grid key={a.id} item xs={12} sm={4} md={3}>
-                            <ArticleCard data={a} />
+                    articles.map((a, i) =>
+                        <Grid key={i} item xs={12} sm={4} md={3}>
+                            <ArticleCard data={a} id={i.toString()} />
                         </Grid>)
                 }
             </Grid>
