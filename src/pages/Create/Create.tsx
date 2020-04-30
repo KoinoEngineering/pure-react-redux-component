@@ -1,10 +1,10 @@
+import { CircularProgress, Button, Container, createStyles, Grid, InputAdornment, makeStyles, OutlinedInput, Typography } from "@material-ui/core";
 import React from "react";
-import { Container, Grid, Typography, TextField, makeStyles, createStyles } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { State } from "src/interfaces/State";
-import { CreateState } from "./CreateReducer";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { State } from "src/interfaces/State";
 import createActionCreators from "./CreateAction";
+import { CreateState } from "./CreateReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -15,7 +15,7 @@ const useRowStyle = makeStyles(createStyles({
 const Create: React.FC = () => {
     const dispatch = useDispatch();
     const actions = bindActionCreators(createActionCreators, dispatch);
-    const { title, body } = useSelector<State, CreateState>(state => state.create);
+    const { title, body, submitting } = useSelector<State, CreateState>(state => state.create);
     const rowClases = useRowStyle();
     return <Container>
         <Grid container>
@@ -26,24 +26,43 @@ const Create: React.FC = () => {
             </Grid>
             <Grid id="TitleContainer" container classes={rowClases}>
                 <Grid item xs={12}>
-                    <TextField
-                        variant="outlined"
+                    <OutlinedInput
+                        placeholder="タイトル"
                         value={title}
-                        label="タイトル"
+                        disabled={submitting}
                         fullWidth
-                        onChange={(e) => actions.changeValues({ title: e.currentTarget.value })} />
+                        onChange={(e) => actions.changeValues({ title: e.currentTarget.value })}
+                        endAdornment={submitting &&
+                            <InputAdornment position="end">
+                                <CircularProgress />
+                            </InputAdornment>}
+                    />
                 </Grid>
             </Grid>
             <Grid id="BodyContainer" container classes={rowClases}>
                 <Grid item xs={12}>
-                    <TextField
-                        variant="outlined"
+                    <OutlinedInput
                         value={body}
-                        label="本文"
+                        disabled={submitting}
+                        placeholder="本文"
                         multiline
                         rows={10}
                         fullWidth
-                        onChange={(e) => actions.changeValues({ body: e.currentTarget.value })} />
+                        onChange={(e) => actions.changeValues({ body: e.currentTarget.value })}
+                        endAdornment={submitting &&
+                            <InputAdornment position="end">
+                                <CircularProgress />
+                            </InputAdornment>}
+                    />
+                </Grid>
+            </Grid>
+            <Grid id="BodyContainer" container classes={rowClases} justify="flex-end">
+                <Grid item >
+                    <Button
+                        variant="contained"
+                        disabled={!(title && body)}
+                        onClick={() => actions.submit()}
+                    >作成</Button>
                 </Grid>
             </Grid>
         </Grid>
