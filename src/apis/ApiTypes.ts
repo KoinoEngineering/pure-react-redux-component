@@ -6,6 +6,6 @@ export type ActiveRecord<M> = Omit<M, "updated_at" | "created_at"> & {
 type STATUS = "SUCCESS" | "FAILED"
 export interface ApiResponse<M> {
     status: STATUS
-    body: ActiveRecord<M>
+    data: ActiveRecord<M>[]
     messages?: string[]
 }

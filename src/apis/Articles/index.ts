@@ -10,7 +10,7 @@ const callApi = function*<Fn extends (...args: any) => Promise<ApiResponse<Res>>
     const response: ApiResponse<Res> = yield call(fn, ...args);
     if (response.status === "SUCCESS") {
         yield put(articlesActionCreators.setLoading(false));
-        yield response;
+        return response;
     } else {
         throw new Error("サーバ内でエラーが発生しました");
     }
@@ -18,10 +18,10 @@ const callApi = function*<Fn extends (...args: any) => Promise<ApiResponse<Res>>
 
 export default {
     all: function* () {
-        yield callApi(async () => fetch(API_BASE + API_ROUTES.ARTICLES).then(getApiResponse));
+        return yield callApi(async () => fetch(API_BASE + API_ROUTES.ARTICLES).then(getApiResponse));
     },
     create: function* (body: Article) {
-        yield callApi(async () =>
+        return yield callApi(async () =>
             fetch(API_BASE + API_ROUTES.ARTICLES
                 , {
                     method: "POST",
