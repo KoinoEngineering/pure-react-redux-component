@@ -1,5 +1,5 @@
 import { put, select, takeLeading } from "redux-saga/effects";
-import Articles from "src/apis/Articles";
+import Articles from "src/apis/articles";
 import { State } from "src/interfaces/State";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
 import ROUTES from "src/utils/Routes";

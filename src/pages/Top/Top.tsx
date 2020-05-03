@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
 import ROUTES from "src/utils/Routes";
-import { ArticlesState } from "src/modules/db/Articles/ArticlesReducer";
 import { State } from "src/interfaces/State";
 import ArticleCard from "src/components/atoms/ArticleCard/ArticleCard";
+import { TopState } from "./TopReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -15,7 +15,7 @@ const useRowStyle = makeStyles(createStyles({
 }));
 
 const Top: React.FC = () => {
-    const { data: articles } = useSelector<State, ArticlesState>(s => s.articles);
+    const { articles } = useSelector<State, TopState>(s => s.top);
     const rowClasses = useRowStyle();
     const dispatch = useDispatch();
     const actions = {

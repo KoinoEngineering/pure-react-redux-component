@@ -1,9 +1,8 @@
 import { Card, CardProps, CardHeader, CardContent, makeStyles, createStyles } from "@material-ui/core";
 import React from "react";
-import { Article } from "src/modules/db/Articles/ArticlesReducer";
 import ROUTES from "src/utils/Routes";
-import { generatePath } from "react-router";
-import { NavLink } from "react-router-dom";
+import { NavLink, generatePath } from "react-router-dom";
+import { Article } from "src/apis/articles/ArticlesReducer";
 
 const useCardContentStyle = makeStyles(createStyles({
     root: {
