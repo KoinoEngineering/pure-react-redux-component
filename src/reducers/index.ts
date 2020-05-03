@@ -5,11 +5,13 @@ import { State } from "src/interfaces/State";
 import create from "src/pages/Create/CreateReducer";
 import articles from "src/apis/articles/ArticlesReducer";
 import top from "src/pages/Top/TopReducer";
+import article from "src/pages/Article/ArticleReducer";
 
 const createRootReducer = (history: H.History) => combineReducers<State>({
     router: connectRouter(history),
     articles,
     top,
-    create
+    create,
+    article
 });
 export default createRootReducer;

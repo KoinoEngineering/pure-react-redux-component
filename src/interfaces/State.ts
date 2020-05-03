@@ -1,6 +1,7 @@
 import { RouterState } from "connected-react-router";
-import { CreateState } from "src/pages/Create/CreateReducer";
 import { ArticlesState } from "src/apis/articles/ArticlesReducer";
+import { ArticleState } from "src/pages/Article/ArticleReducer";
+import { CreateState } from "src/pages/Create/CreateReducer";
 import { TopState } from "src/pages/Top/TopReducer";
 
 export interface State {
@@ -8,4 +9,5 @@ export interface State {
     router: RouterState;
     top: TopState
     create: CreateState;
+    article: ArticleState;
 }

@@ -1,9 +1,13 @@
 import { all, fork } from "redux-saga/effects";
 import createSaga from "src/pages/Create/CreateSaga";
+import topSaga from "src/pages/Top/TopSaga";
+import articleSaga from "src/pages/Article/ArticleSaga";
 
 const rootSaga = function* () {
     yield all([
-        createSaga
+        topSaga,
+        createSaga,
+        articleSaga,
     ].map(saga => fork(saga)));
 };
 
