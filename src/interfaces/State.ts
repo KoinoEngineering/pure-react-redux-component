@@ -1,6 +1,6 @@
 import { RouterState } from "connected-react-router";
 import { CreateState } from "src/pages/Create/CreateReducer";
-import { ArticlesState } from "src/modules/db/Articles/ArticlesReducer";
+import { ArticlesState } from "src/apis/articles/ArticlesReducer";
 
 export interface State {
     articles: ArticlesState;
