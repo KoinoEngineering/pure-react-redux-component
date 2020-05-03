@@ -1,10 +1,15 @@
-import { ApiResponse } from "./ApiTypes";
+import { ApiResponse, ActiveRecord } from "./ApiTypes";
+
+type ActiveRecordBase<M> = { [K in keyof ActiveRecord<M>]: K extends "created_at" | "updated_at" ? string : ActiveRecord<M>[K] }
 
 export const getApiResponse = <M>(res: Response) => res.json().then((json) => {
-    return Object.keys(json).reduce((res, key) => {
-        res[key as keyof ApiResponse<M>] = ["updated_at", "created_at"].some(k => k === key)
-            ? new Date(json[key])
-            : json[key];
-        return res;
-    }, {} as ApiResponse<M>);
+    const data: ActiveRecordBase<M>[] = json.data;
+    return {
+        ...json,
+        data: data.map(d => ({
+            ...d,
+            created_at: new Date(d.created_at || ""),
+            updated_at: new Date(d.updated_at || ""),
+        }))
+    } as ApiResponse<M>;
 });

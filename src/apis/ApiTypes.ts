@@ -1,6 +1,7 @@
 export type ActiveRecord<M> = Omit<M, "updated_at" | "created_at"> & {
-    "updated_at": Date;
-    "created_at": Date;
+    id: string;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 type STATUS = "SUCCESS" | "FAILED"
