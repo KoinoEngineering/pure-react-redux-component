@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { ArticlesActions } from "./ArticlesAction";
+import { ActiveRecord } from "../ApiTypes";
 export interface ArticlesState {
     loading: boolean
 }
@@ -9,7 +10,7 @@ export interface Article {
     body: string;
 }
 
-export type Articles = Article[]
+export type Articles = ActiveRecord<Article>[];
 
 const initialState = (): ArticlesState => ({ loading: false });
 

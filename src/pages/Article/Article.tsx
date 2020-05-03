@@ -3,11 +3,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router";
 import { State } from "src/interfaces/State";
-import { ArticlesState } from "src/modules/db/Articles/ArticlesReducer";
 import { NavLink } from "react-router-dom";
 import ROUTES from "src/utils/Routes";
 import { bindActionCreators } from "redux";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
+import { TopState } from "../Top/TopReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -28,7 +28,7 @@ interface ArticleParms {
 interface ArticleProps extends RouteComponentProps<ArticleParms> { }
 
 const Article: React.FC<ArticleProps> = (props) => {
-    const { data } = useSelector<State, ArticlesState>(state => state.articles);
+    const { articles: data } = useSelector<State, TopState>(state => state.top);
     const rowClases = useRowStyle();
     const bodyCasses = useBodyStyle();
     const dispatch = useDispatch();
@@ -60,10 +60,10 @@ const Article: React.FC<ArticleProps> = (props) => {
             </Grid>
             <Grid id="OtherContainer" container classes={rowClases} spacing={4}>
                 <Grid item>
-                    <Typography variant="body2">{"作成日時" + article?.created}</Typography>
+                    <Typography variant="body2">{"作成日時" + article?.created_at}</Typography>
                 </Grid>
                 <Grid item>
-                    <Typography variant="body2">{"更新日時" + article?.edited}</Typography>
+                    <Typography variant="body2">{"更新日時" + article?.updated_at}</Typography>
                 </Grid>
             </Grid>
             <Grid id="LinkContainer" container classes={rowClases} spacing={4}>

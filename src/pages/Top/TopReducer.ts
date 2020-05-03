@@ -13,6 +13,6 @@ const topReducer: Reducer<TopState, TopActions> = (state = initialState(), actio
         default:
             return state;
     }
-}
+};
 
 export default topReducer;
