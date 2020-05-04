@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { ArticlesActions } from "./ArticlesAction";
+import { ArticlesActions, ActionType } from "./ArticlesAction";
 import { ActiveRecord } from "../ApiTypes";
 export interface ArticlesState {
     loading: boolean
@@ -16,6 +16,11 @@ const initialState = (): ArticlesState => ({ loading: false });
 
 const articlesReducer: Reducer<ArticlesState, ArticlesActions> = (state = initialState(), action) => {
     switch (action.type) {
+        case ActionType.SET_LOADING:
+            return {
+                ...state,
+                ...action.payload
+            };
         default:
             return state;
     }
