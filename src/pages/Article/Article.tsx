@@ -44,7 +44,7 @@ const Article: React.FC<ArticleProps> = (props) => {
 
     useEffect(() => {
         actions.getArticle(id);
-        return () => { actions.setArticle({ id: "", title: "", body: "", created_at: new Date(), updated_at: new Date() }); };
+        return () => { actions.setArticle({ id: "", title: "", body: "", created_at: undefined, updated_at: undefined }); };
     }, [actions, id]);
 
     if (isNaN(Number(props.match.params.id))) {
