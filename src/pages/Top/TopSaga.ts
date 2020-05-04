@@ -1,7 +1,7 @@
 import { put, takeLeading } from "redux-saga/effects";
 import { ApiResponse } from "src/apis/ApiTypes";
-import articles from "src/apis/articles";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import Articles from "src/apis/Articles";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import topActionCreators, { ActionType } from "./TopAction";
 
 const topSaga = function* () {
@@ -11,6 +11,6 @@ const topSaga = function* () {
 export default topSaga;
 
 const getArticlesSaga = function* () {
-    const r: ApiResponse<Article> = yield articles.all();
+    const r: ApiResponse<Article> = yield Articles.all();
     yield put(topActionCreators.setArticles({ data: r.data }));
 };

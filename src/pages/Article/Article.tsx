@@ -9,7 +9,7 @@ import { dateFormat } from "src/utils";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
 import ROUTES from "src/utils/Routes";
 import { ArticleState } from "./ArticleReducer";
-import { ArticlesState } from "src/apis/articles/ArticlesReducer";
+import { ArticlesState } from "src/apis/Articles/ArticlesReducer";
 import articleActionCreators from "./ArticleAction";
 
 const useRowStyle = makeStyles(createStyles({

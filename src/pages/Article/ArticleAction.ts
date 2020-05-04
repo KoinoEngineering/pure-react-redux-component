@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { Payload } from "src/interfaces/Action";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import { ActiveRecord } from "src/apis/ApiTypes";
 
 export enum ActionType {

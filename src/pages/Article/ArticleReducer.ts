@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { ActiveRecord } from "src/apis/ApiTypes";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import { ActionType, ArticleActions } from "./ArticleAction";
 
 export interface ArticleState extends ActiveRecord<Article> {

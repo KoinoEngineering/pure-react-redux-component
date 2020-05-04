@@ -8,7 +8,7 @@ import { State } from "src/interfaces/State";
 import ArticleCard from "src/components/atoms/ArticleCard/ArticleCard";
 import { TopState } from "./TopReducer";
 import topActionCreators from "./TopAction";
-import { ArticlesState } from "src/apis/articles/ArticlesReducer";
+import { ArticlesState } from "src/apis/Articles/ArticlesReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {

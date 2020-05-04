@@ -1,4 +1,4 @@
-import { Articles } from "src/apis/articles/ArticlesReducer";
+import { Articles } from "src/apis/Articles/ArticlesReducer";
 import { Reducer } from "redux";
 import { TopActions, ActionType } from "./TopAction";
 

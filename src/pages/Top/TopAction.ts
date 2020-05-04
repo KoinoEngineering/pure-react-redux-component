@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { ApiResponse } from "src/apis/ApiTypes";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import { Payload } from "src/interfaces/Action";
 
 export enum ActionType {

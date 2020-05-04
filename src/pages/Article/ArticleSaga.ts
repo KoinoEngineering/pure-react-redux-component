@@ -1,7 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { ApiResponse } from "src/apis/ApiTypes";
-import Articles from "src/apis/articles";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import Articles from "src/apis/Articles";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import articleActionCreators, { ActionType, GetArticleAction } from "../Article/ArticleAction";
 
 const articleSaga = function* () {

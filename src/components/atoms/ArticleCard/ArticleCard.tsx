@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardProps, createStyles, makeStyles } fr
 import React from "react";
 import { generatePath, NavLink } from "react-router-dom";
 import { ActiveRecord } from "src/apis/ApiTypes";
-import { Article } from "src/apis/articles/ArticlesReducer";
+import { Article } from "src/apis/Articles/ArticlesReducer";
 import ROUTES from "src/utils/Routes";
 
 const useCardContentStyle = makeStyles(createStyles({
