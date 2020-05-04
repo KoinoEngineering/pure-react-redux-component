@@ -14,7 +14,7 @@ const topReducer: Reducer<TopState, TopActions> = (state = initialState(), actio
             return {
                 ...state,
                 articles: action.payload.data
-            }
+            };
         default:
             return state;
     }
