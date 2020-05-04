@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
-import { CreateActions, ActionType } from "./CreateAction";
-import { Article } from "src/modules/db/Articles/ArticlesReducer";
+import { Article } from "src/apis/Articles/ArticlesReducer";
+import { ActionType, CreateActions } from "./CreateAction";
 
 export interface CreateState extends Pick<Article, "title" | "body"> {
     submitting: boolean;

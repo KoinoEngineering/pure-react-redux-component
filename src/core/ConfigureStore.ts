@@ -10,15 +10,10 @@ export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
-const logger = createLogger({
-    collapsed: true
-});
-
 // 本番でloggerを抜きたい
 const middlewares = process.env.NODE_ENV !== "production"
     ? [routerMiddleware(history),
-        sagaMiddleware,
-        logger
+        sagaMiddleware, createLogger({ collapsed: true })
     ]
     : [routerMiddleware(history),
         sagaMiddleware,
