@@ -30,8 +30,8 @@ const reduxOutlinedInputReducer: Reducer<ReduxState<ReduxOutlinedInputState>, Re
 };
 
 export enum ReduxOutlinedInputId {
-    TITLE = "top/title",
-    BODY = "top/body",
+    CREATE_ARTICLE_TITLE = "create/article/title",
+    CREATE_ARTICLE_BODY = "create/article/body",
 }
 
 export default reduxOutlinedInputReducer;

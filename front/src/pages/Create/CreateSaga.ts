@@ -1,6 +1,5 @@
-import { all, put, select, takeLeading } from "redux-saga/effects";
+import { put, select, takeLeading } from "redux-saga/effects";
 import Articles from "src/apis/Articles";
-import reduxOutlinedInputActionCreators from "src/components/atoms/ReduxOutlinedInput/ReduxOutlinedInputAction";
 import { ReduxOutlinedInputId } from "src/components/atoms/ReduxOutlinedInput/ReduxOutlinedInputReducer";
 import { State } from "src/interfaces/State";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
@@ -15,15 +14,14 @@ export default createSaga;
 
 const submitSaga = function* () {
     const {
-        [ReduxOutlinedInputId.TITLE]: title,
-        [ReduxOutlinedInputId.BODY]: body
+        [ReduxOutlinedInputId.CREATE_ARTICLE_TITLE]: title,
+        [ReduxOutlinedInputId.CREATE_ARTICLE_BODY]: body
     } = (yield select<(s: State) => State["reduxOutlinedInput"]>(s => s.reduxOutlinedInput)) as State["reduxOutlinedInput"];
     if (title?.value && body?.value) {
         yield Articles.create({ title: title.value as string, body: body.value as string });
+        yield put(navigateActionsCreatetors.push(ROUTES.TOP));
+    } else {
+        alert("タイトルと本文は必須です");
     }
-    yield all([
-        put(reduxOutlinedInputActionCreators.change(ReduxOutlinedInputId.TITLE, "")),
-        put(reduxOutlinedInputActionCreators.change(ReduxOutlinedInputId.BODY, "")),
-    ]);
-    yield put(navigateActionsCreatetors.push(ROUTES.TOP));
+
 };
