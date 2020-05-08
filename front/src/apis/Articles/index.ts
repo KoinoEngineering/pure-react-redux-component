@@ -4,6 +4,8 @@ import { getApiResponse } from "../apiUtils";
 import API_ROUTES, { API_BASE } from "../routes";
 import articlesActionCreators from "./ArticlesAction";
 import { Article } from "./ArticlesReducer";
+import { SubmitAction } from "src/pages/Edit/EditAction";
+import { generatePath } from "react-router";
 
 const callApi = function*<Fn extends (...args: any) => Promise<ApiResponse<Res>>, Res>(fn: Fn, ...args: Parameters<Fn>) {
     yield put(articlesActionCreators.setLoading(true));
@@ -25,6 +27,17 @@ export default {
             fetch(API_BASE + API_ROUTES.ARTICLES
                 , {
                     method: "POST",
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    body: JSON.stringify(body)
+                }).then(getApiResponse));
+    },
+    update: function* (id: SubmitAction["payload"]["id"], body: Article) {
+        return yield callApi(async () =>
+            fetch(API_BASE + generatePath(API_ROUTES.ARTICLE, { id })
+                , {
+                    method: "PUT",
                     headers: {
                         "Content-Type": "application/json; charset=utf-8",
                     },

@@ -1,16 +1,16 @@
-import { Container, createStyles, Grid, makeStyles, Typography, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, Container, createStyles, Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router";
-import { NavLink } from "react-router-dom";
+import { RouteComponentProps, withRouter, generatePath } from "react-router";
 import { bindActionCreators } from "redux";
+import { ArticlesState } from "src/apis/Articles/ArticlesReducer";
+import NavLink from "src/components/atoms/NavLink";
 import { State } from "src/interfaces/State";
 import { dateFormat } from "src/utils";
 import { navigateActionsCreatetors } from "src/utils/ComponentUtils";
 import ROUTES from "src/utils/Routes";
-import { ArticleState } from "./ArticleReducer";
-import { ArticlesState } from "src/apis/Articles/ArticlesReducer";
 import articleActionCreators from "./ArticleAction";
+import { ArticleState } from "./ArticleReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -85,8 +85,15 @@ const Article: React.FC<ArticleProps> = (props) => {
                 </Grid>
             }
             <Grid id="LinkContainer" container classes={rowClases} spacing={4}>
-                <Grid item>
-                    <NavLink to={ROUTES.TOP}>トップへ</NavLink>
+                <Grid item >
+                    <NavLink to={ROUTES.TOP} disableUnderLine>
+                        <Button variant="contained" disabled={loading}>トップへ戻る</Button>
+                    </NavLink>
+                </Grid>
+                <Grid item >
+                    <NavLink to={generatePath(ROUTES.EDIT, { id })} disableUnderLine>
+                        <Button variant="contained" disabled={loading}>編集する</Button>
+                    </NavLink>
                 </Grid>
             </Grid>
         </Grid>

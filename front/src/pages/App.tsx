@@ -6,6 +6,7 @@ import { history } from "src/core/ConfigureStore";
 import ROUTES from "src/utils/Routes";
 import Article from "./Article/Article";
 import Create from "./Create/Create";
+import Edit from "./Edit/Edit";
 import Top from "./Top/Top";
 
 const useStyles = makeStyles(
@@ -27,6 +28,9 @@ const App: React.FC = () => {
                 </PublicRoute>
                 <PublicRoute exact path={ROUTES.ARTICLE}>
                     <Article />
+                </PublicRoute>
+                <PublicRoute exact path={ROUTES.EDIT}>
+                    <Edit />
                 </PublicRoute>
                 <Redirect exact from="*" to={ROUTES.TOP} />
             </Switch>
