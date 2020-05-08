@@ -1,14 +1,6 @@
-# blog-samplle
-
-- api起動
+# pure-react-redux-component
 ```
-git submodule init
-cd ./modules/api
+git clone https://github.com/KoinoEngineering/pure-react-redux-component.git pure-react-redux-component
+cd pure-react-redux-component
 docker-compose up
-```
-
-- front起動
-```
-npm ci
-npm start
 ```
