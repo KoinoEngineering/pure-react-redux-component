@@ -9,6 +9,7 @@ interface ArticleEditorProps extends ComponentProps<typeof Grid> {
     titleReduxId: string;
     bodyReduxId: string;
     loading: boolean;
+    keepUnMount?: boolean;
 }
 
 const useRowStyle = makeStyles(createStyles({
@@ -17,7 +18,7 @@ const useRowStyle = makeStyles(createStyles({
     }
 }));
 
-const ArticleEditor: React.FC<ArticleEditorProps> = ({ titleReduxId, bodyReduxId, loading, ...gridProps }) => {
+const ArticleEditor: React.FC<ArticleEditorProps> = ({ titleReduxId, bodyReduxId, loading, keepUnMount, ...gridProps }) => {
     const rowClases = useRowStyle();
     const dispatch = useDispatch();
 
@@ -27,9 +28,11 @@ const ArticleEditor: React.FC<ArticleEditorProps> = ({ titleReduxId, bodyReduxId
 
     // アンマウント時にvalueをクリアする
     useEffect(() => () => {
-        actions.reduxOutlinedInput.change(titleReduxId, "");
-        actions.reduxOutlinedInput.change(bodyReduxId, "");
-    }, [actions.reduxOutlinedInput, bodyReduxId, titleReduxId])
+        if (!keepUnMount) {
+            actions.reduxOutlinedInput.change(titleReduxId, "");
+            actions.reduxOutlinedInput.change(bodyReduxId, "");
+        }
+    }, [actions.reduxOutlinedInput, bodyReduxId, titleReduxId, keepUnMount])
 
     return <Grid container {...gridProps} >
         <Grid id="TitleContainer" container classes={rowClases}>
