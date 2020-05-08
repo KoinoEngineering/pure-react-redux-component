@@ -1,14 +1,11 @@
 import { Reducer } from "redux";
-import { Article } from "src/apis/Articles/ArticlesReducer";
 import { ActionType, CreateActions } from "./CreateAction";
 
-export interface CreateState extends Pick<Article, "title" | "body"> {
+export interface CreateState {
     submitting: boolean;
 }
 
 const initialState = (): CreateState => ({
-    title: "",
-    body: "",
     submitting: false,
 });
 
