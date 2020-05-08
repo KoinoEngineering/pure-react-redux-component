@@ -1,12 +1,12 @@
-import { Button, CircularProgress, Container, createStyles, Grid, InputAdornment, makeStyles, Typography, FormControl, InputLabel } from "@material-ui/core";
+import { Button, CircularProgress, Container, createStyles, FormControl, Grid, InputAdornment, InputLabel, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { ArticlesState } from "src/apis/Articles/ArticlesReducer";
 import ReduxOutlinedInput, { useReduxOutlinedInputState } from "src/components/atoms/ReduxOutlinedInput";
 import { ReduxOutlinedInputId } from "src/components/atoms/ReduxOutlinedInput/ReduxOutlinedInputReducer";
 import { State } from "src/interfaces/State";
 import createActionCreators from "./CreateAction";
-import { CreateState } from "./CreateReducer";
 
 const useRowStyle = makeStyles(createStyles({
     root: {
@@ -17,7 +17,7 @@ const useRowStyle = makeStyles(createStyles({
 const Create: React.FC = () => {
     const dispatch = useDispatch();
     const actions = bindActionCreators(createActionCreators, dispatch);
-    const { submitting } = useSelector<State, CreateState>(state => state.create);
+    const { loading } = useSelector<State, ArticlesState>(state => state.articles);
     const { [ReduxOutlinedInputId.TITLE]: title, [ReduxOutlinedInputId.BODY]: body } = useReduxOutlinedInputState([ReduxOutlinedInputId.TITLE, ReduxOutlinedInputId.BODY]);
 
     const rowClases = useRowStyle();
@@ -35,10 +35,10 @@ const Create: React.FC = () => {
                         <ReduxOutlinedInput
                             id={ReduxOutlinedInputId.TITLE}
                             reduxId={ReduxOutlinedInputId.TITLE}
-                            disabled={submitting}
+                            disabled={loading}
                             fullWidth
                             label={ReduxOutlinedInputId.TITLE}
-                            endAdornment={submitting &&
+                            endAdornment={loading &&
                                 <InputAdornment position="end">
                                     <CircularProgress />
                                 </InputAdornment>}
@@ -54,11 +54,11 @@ const Create: React.FC = () => {
                             id={ReduxOutlinedInputId.BODY}
                             reduxId={ReduxOutlinedInputId.BODY}
                             label={ReduxOutlinedInputId.BODY}
-                            disabled={submitting}
+                            disabled={loading}
                             multiline
                             rows={10}
                             fullWidth
-                            endAdornment={submitting &&
+                            endAdornment={loading &&
                                 <InputAdornment position="end">
                                     <CircularProgress />
                                 </InputAdornment>}
