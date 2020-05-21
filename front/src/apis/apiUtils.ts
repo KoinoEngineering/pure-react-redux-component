@@ -8,8 +8,8 @@ export const getApiResponse = <M>(res: Response) => res.json().then((json) => {
         ...json,
         data: data.map(d => ({
             ...d,
-            created_at: new Date(d.created_at || ""),
-            updated_at: new Date(d.updated_at || ""),
+            created_at: (d.created_at ? new Date(d.created_at) : new Date(0)).getTime(),
+            updated_at: (d.updated_at ? new Date(d.updated_at) : new Date(0)).getTime(),
         }))
     } as ApiResponse<M>;
 });
