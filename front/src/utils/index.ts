@@ -1,4 +1,5 @@
-export const dateFormat = (date: Date, format: string = "YYYY/MM/DD hh:mm:ss.SSS") => {
+export const dateFormat = (serial: number, format: string = "YYYY/MM/DD hh:mm:ss.SSS") => {
+    const date = new Date(serial);
     return format
         .replace(/YYYY/, date.getFullYear().toString())
         .replace(/MM/, (date.getMonth() + 1).toString())
